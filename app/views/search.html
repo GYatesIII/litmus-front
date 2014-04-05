@@ -1,0 +1,48 @@
+<div class="row spacer">
+	<div class="col-md-12">
+		<div class="btn-group btn-group-justified">
+		  <div class="btn-group">
+		    <button type="button" class="btn btn-default" ng-click="selectField('creative')">Creative</button>
+		  </div>
+		  <div class="btn-group">
+		    <button type="button" class="btn btn-default" ng-click="selectField('ecommerce')">eCommerce</button>
+		  </div>
+		  <div class="btn-group">
+		    <button type="button" class="btn btn-default" ng-click="selectField('technology')">Technology</button>
+		  </div>
+		</div>
+	</div>
+</div>
+
+<div class="row spacer" ng-show="field">
+	<form ng-submit="searchSubmit()">
+	<div class="col-md-12">
+	    <div class="input-group">
+	      <input type="text" class="form-control" ng-model="domainSearch">
+	      <span class="input-group-btn">
+	        <button class="btn btn-default" type="button" ng-click="searchSubmit()">Go!</button>
+	      </span>
+	    </div>
+	</div>
+	</form>
+</div>
+
+<div class="row spacer" ng-show="domain" ng-controller="DomainCtrl">
+	<div class="col-md-3">
+		<h5>Domain Name</h5>
+		<button class="btn" ng-class="availableClass(available.domain)">{{domain.name}}.com</button>
+		<h5>Brand Alternatives</h5>
+		<div ng-repeat="alternative in alternatives" class="sm-spacer hz">
+			<button class="btn" ng-click="switchDomain(alternative.name)">{{alternative.name}}</button>
+		</div>
+	</div>
+	<div class="col-md-9">
+		<button class="btn reg-btn" ng-class="availableClass(available.facebook)">Facebook</button>
+		<button class="btn reg-btn" ng-class="availableClass(available.twitter)">Twitter</button>
+		<button class="btn reg-btn" ng-class="availableClass(available.google)">Google+</button>
+		<h5>Recommended Social Platforms for {{field.name}}</h5>
+		<div>
+			<button ng-repeat="platform in field.platforms" class="btn reg-btn sm-spacer hz" ng-class="availableClass(available[platform.endpoint])">{{platform.name}}</button>
+		</div>
+	</div>
+</div>
