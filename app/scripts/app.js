@@ -46,6 +46,8 @@ angular
 	  $rootScope.$state = $state;
 	  $rootScope.$stateParams = $stateParams;
 
+
+	  if ($(window).width() > 900) {
 	  	var $container = $('.container-wrap');
 	  	var $curtain = $('.landing-curtain');
 
@@ -77,4 +79,5 @@ angular
 		        $container.css('top', 0);
 		    }    		
     	});
+	  }
 	});
