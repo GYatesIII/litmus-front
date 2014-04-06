@@ -143,6 +143,7 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 }
 
 .landing-curtain {
+    display: block;
     position: relative;
     width: 100%;
     height: 100vh;
@@ -155,6 +156,10 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
     background-image: url('/images/landing-curtain.png');
     background-repeat: no-repeat;
     background-position: center center;
+
+    @media (max-width: 900px) {
+        display: none;
+    }
 }
 
 .landing-box-wrap {
@@ -192,6 +197,10 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
         text-align: center;
         line-height: 1.3em;
         color: #333;
+    }
+
+    form {
+        display: block;
     }
 
     input.form-control, button {
