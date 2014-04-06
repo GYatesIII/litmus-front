@@ -1,75 +1,59 @@
 'use strict';
 
 angular.module('litmusApp')
-.controller('SearchCtrl', function ($scope, $state, $window) {
-	var platforms = {
-		creative: [
-			{
-				name : 'Instagram',
-				endpoint: 'instagram'
-			},
-			{
-				name: 'Vimeo',
-				endpoint: 'vimeo'
-			},
-			{
-				name: 'Dribbble',
-				endpoint: 'dribbble'		
-			}
-		],
-		ecommerce: [
-			{
-				name: 'LinkedIn',
-				endpoint: 'linkedin'
-			},
-			{
-				name: 'eBay',
-				endpoint: 'ebay'
-			},
-			{
-				name: 'Etsy',
-				endpoint: 'etsy'				
-			}
-		],
-		technology: [
-			{
-				name: 'Angel List',
-				endpoint: 'angellist'				
-			},
-			{
-				name: 'Github',
-				endpoint: 'github'				
-			},
-			{
-				name: 'Vimeo',
-				endpoint: 'vimeo'
-			}
-		]
+.controller('SearchCtrl', function ($scope, $state, $rootScope, $window) {
+	$scope.platforms = {
+		twitter: {
+			name: 'Twitter',
+			available: null
+		},
+		facebook: {
+			name: 'Facebook',
+			available: null
+		},
+		google: {
+			name: 'Google+',
+			available: null
+		},
+		instagram: {
+			name: 'Instagram',
+			available: null
+		},
+		vimeo: {
+			name: 'Vimeo',
+			available: null
+		},
+		dribbble: {
+			name: 'Dribbble',
+			available: null
+		},
+		linkedin: {
+			name: 'LinkedIn',
+			available: null
+		},
+		ebay: {
+			name: 'eBay',
+			available: null
+		},
+		etsy: {
+			name: 'Etsy',
+			available: null
+		},
+		angellist: {
+			name: 'AngelList',
+			available: null
+		},
+		github: {
+			name: 'GitHub',
+			available: null
+		}
 	};
 
-	function updateField() {
-		$scope.field = false;
-		if (typeof ($state.params.field) !== 'undefined') {
-			switch ($state.params.field) {
-				case 'creative' :
-					$scope.field = {
-						name : 'Creative',
-						platforms : platforms.creative
-					};
-					break;
-				case 'ecommerce' :
-					$scope.field = {
-						name : 'eCommerce',
-						platforms : platforms.ecommerce
-					};
-					break;
-				case 'technology' :
-					$scope.field = {
-						name : 'Technology',
-						platforms : platforms.technology
-					};
-					break;
-			}
+	function updateExpertise() {
+		$scope.expertise = false;
+
+		if (typeof ($state.params.expertise) !== 'undefined') {
+			$scope.expertise = $state.params.expertise;
 		}
 	}
 
@@ -77,26 +61,27 @@ angular.module('litmusApp')
 		$scope.domain = false;
 		if (typeof ($state.params.domain) !== 'undefined') {
 			$scope.domain = {
-				name : $state.params.domain
+				name : $state.params.domain,
+				available: null
 			};
-			$scope.domainSearch = $state.params.domain;
+			$scope.domainSearch = $scope.domain.name;
 		}
 	}
 
-	$scope.selectField = function(_field) {
+	$scope.expertiseLevel = function(_expertise) {
 		if ($state.includes('**.domain')) {
-			$state.go('search.field.domain', {field: _field, domain: $scope.domain.name});
+			$state.go('search.expertise.domain', {expertise: _expertise, domain: $scope.domain.name});
 		} else {
-			$state.go('search.field', {field: _field});
+			$state.go('search.expertise', {expertise: _expertise});
 		}
 	};
 
-	$scope.fieldActiveClass = function(_name) {
-		return $scope.field.name != _name ? 'btn-default' : 'btn-primary';
+	$scope.activeExpertise = function(_expertise) {
+		return $scope.expertise == _expertise ? 'btn-primary' : 'btn-default';
 	};
 
 	$scope.switchDomain = function(_domain) {
-		$state.go('search.field.domain', {domain: _domain});
+		$state.go('search.expertise.domain', {domain: _domain});
 	};
 
 	$scope.searchSubmit = function() {
@@ -115,17 +100,20 @@ angular.module('litmusApp')
 		}
 
 		updateDomain();
-		updateField();
+		updateExpertise();
+	});
+
+	$rootScope.$on('domain:updated', function() {
+
 	});
 
 	function resetDomain() {
-		$scope.field = false;
 		$scope.domain = false;
 		$scope.domainSearch = null;
 	}
 
 	function init() {
-		updateField();
+		updateExpertise();
 		updateDomain();
 	}
 

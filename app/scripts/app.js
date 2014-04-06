@@ -25,17 +25,17 @@ angular
 				controller: 'SearchCtrl',
 				bodyClass: 'search'
 			}).
-			state('search.field', {
-				url: '/:field',
+			state('search.expertise', {
+				url: '/:expertise',
 				templateUrl: 'views/search.html',
 				controller: 'SearchCtrl',
-				bodyClass: 'search field'
+				bodyClass: 'search expertise'
 			}).
-			state('search.field.domain', {
+			state('search.expertise.domain', {
 				url: '/:domain',
 				templateUrl: 'views/search.html',
 				controller: 'SearchCtrl',
-				bodyClass: 'search field domain'
+				bodyClass: 'search expertise domain'
 			});
 		$urlRouterProvider.otherwise('/');
 	}).
