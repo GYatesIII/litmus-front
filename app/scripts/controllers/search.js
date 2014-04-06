@@ -49,6 +49,8 @@ angular.module('litmusApp')
 		}
 	};
 
+	var expertiseModal = null;
+
 	function updateExpertise() {
 		$scope.expertise = false;
 
@@ -56,7 +58,6 @@ angular.module('litmusApp')
 			$scope.expertise = $state.params.expertise;
 		}
 
-		var expertiseModal = null;
 		if ($scope.expertise === 'advanced' && expertiseModal === null) {
 			expertiseModal = $modal.open({
 				templateUrl: '/views/advanced-modal.tpl.html'
@@ -64,7 +65,6 @@ angular.module('litmusApp')
 		} else {
 			if (typeof (expertiseModal) !== 'undefined' && expertiseModal !== null) {
 				expertiseModal.close();
-				expertiseModal = null;
 			}
 		}
 	}

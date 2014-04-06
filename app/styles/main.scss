@@ -200,6 +200,29 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
     }
 }
 
+ul.pro_features {
+    list-style-type:  none;
+    margin: 0px;
+    padding: 0px;
+    li {
+        margin-bottom: 5px;
+    }
+    span {
+        display: block;
+        box-sizing: border-box;
+    }
+    span.feature_name {
+        font-weight: bold;
+    }
+}
+
+.modal-header {
+    background-color: #3276B1;
+    .modal-title {
+        color: white;
+    }
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 900px) {
     .container {
