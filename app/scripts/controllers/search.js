@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('litmusApp')
-.controller('SearchCtrl', function ($scope, $state) {
+.controller('SearchCtrl', function ($scope, $state, $window) {
 	var platforms = {
 		creative: [
 			{
@@ -91,18 +91,40 @@ angular.module('litmusApp')
 		}
 	};
 
+	$scope.fieldActiveClass = function(_name) {
+		return $scope.field.name != _name ? 'btn-default' : 'btn-primary';
+	};
+
 	$scope.switchDomain = function(_domain) {
 		$state.go('search.field.domain', {domain: _domain});
 	};
 
 	$scope.searchSubmit = function() {
+		$window.ga('send', 'event', 'Domain', 'Searched', 'Input box filled out and searched');
 		$scope.switchDomain($scope.domainSearch);
 	};
 
+	$scope.clickAlternative = function(_domain) {
+		$window.ga('send', 'event', 'Domain', 'Alternative', 'A suggested alternative name was clicked on');
+		$scope.switchDomain(_domain);
+	};
+
 	$scope.$on('$stateChangeSuccess', function() {
+		console.log(typeof($state.params.field));
+
+		if (typeof($state.params.field) === 'undefined') {
+			resetDomain();
+		}
+
 		updateDomain();
 		updateField();
 	});
+
+	function resetDomain() {
+		$scope.field = false;
+		$scope.domain = false;
+		$scope.domainSearch = null;
+	}
 
 	function init() {
 		updateField();
