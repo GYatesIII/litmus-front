@@ -16,9 +16,19 @@ angular.module('litmusApp')
 
       $scope.domain.name = $scope.sanitizeDomain($scope.domain.name);
 
-  		Domain.checkDomain($scope.domain).success(function(response) {
-  			$scope.domain.available = response.success ? !response.taken : false;
+  		Domain.checkDomain($scope.domain.name + '.com').success(function(response) {
+  			$scope.domain.comAvailable = response.success ? !response.taken : false;
   		});
+
+      Domain.checkDomain($scope.domain.name + '.org').success(function(response) {
+        $scope.domain.orgAvailable = response.success ? !response.taken : false;
+      });
+      
+      Domain.checkDomain($scope.domain.name + '.net').success(function(response) {
+        $scope.domain.netAvailable = response.success ? !response.taken : false;
+      });
+
+
 
   		// for (var service in $scope.available) {
   		// 	if (typeof (service) === 'undefined' || service == 'domain')

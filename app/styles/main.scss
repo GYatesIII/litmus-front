@@ -101,11 +101,10 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 }
 
 .sm-spacer {
-    margin: 5px 0;
+    margin-bottom: 4px;
 
     &.hz {
-        margin-left: 2px;
-        margin-right: 2px;
+        margin-right: 4px;
 
         &:first-child {
             margin-left: 0;

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('litmusApp')
-.controller('SearchCtrl', function ($scope, $rootScope, $state, $window, $modal) {
+.controller('SearchCtrl', function ($scope, $rootScope, $state, $window, $modal, Domain) {
 	$scope.platforms = {
 		twitter: {
 			name: 'Twitter',
@@ -101,9 +101,20 @@ angular.module('litmusApp')
 	};
 
 	$scope.searchSubmit = function() {
-		$window.ga('send', 'event', 'Domain', 'Searched', 'Input box filled out and searched');
-		$scope.switchDomain($scope.domainSearch);
 	};
+
+  	$scope.searchSubmit = function() {
+  		if (typeof ($scope.domainSearch) === 'undefined' || $scope.domainSearch == null || $scope.domainSearch.length == 0) {
+			$window.ga('send', 'event', 'Domain', 'Random Searched', 'Input box not filled out and searched');
+  			Domain.generateRandom().success(function(response) {
+  				$scope.domainSearch = response.names[0];
+				$scope.switchDomain($scope.domainSearch);
+  			});
+  		} else {
+			$window.ga('send', 'event', 'Domain', 'Searched', 'Input box filled out and searched');
+			$scope.switchDomain($scope.domainSearch);
+  		}
+  	};
 
 	$scope.clickAlternative = function(_domain) {
 		$window.ga('send', 'event', 'Domain', 'Alternative', 'A suggested alternative name was clicked on');
