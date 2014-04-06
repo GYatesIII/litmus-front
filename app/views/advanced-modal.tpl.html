@@ -1,14 +1,18 @@
 <div class="modal-header">
-  <button type="button" class="close" aria-hidden="true">&times;</button>
-  <h4 class="modal-title">Advanced Brand Management</h4>
+  <button type="button" class="close" aria-hidden="true" ui-sref="search.expertise({expertise:'simple'})">&times;</button>
+  <h4 class="modal-title">Become a Pro User to access these features</h4>
 </div>
 <div class="modal-body">
-  <p>Coming soon, we're planning the following features:</p>
-  <ul>
-    <li><strong>Jason Nellis' personal branding service</strong> &mdash; 25% buzzword saturation guaranteed!</li>
-    <li><strong>Frank Taylor's special massage</strong> &mdash; After a strategic partnership with Fleshlight, Restin chairs now come with one-size fits all "cup" holders.</li>
+  <ul class="pro_features">
+    <li><span class="feature_name">Bulk Search</span><span class="feature_value">Upload hundreds of brand name iterations as .csv</span></li>
+    <li><span class="feature_name">Advanced Search Targeting</span><span class="feature_value">Get targeting suggestions based on location, market segment, customer profile, etc</span></li>
+    <li><span class="feature_name">Risk Analysis</span><span class="feature_value">How does your brand stack up against your closest competitors?</span></li>
+    <li><span class="feature_name">Keyword and PPC Data</span><span class="feature_value">Quickly access variable marketing costs based on brand relevant search terms</span></li>
+    <li><span class="feature_name">Export detailed results</span><span class="feature_value">Quickly produce detailed reports to share with decision makers</span></li>
+    <li><span class="feature_name">Bulk Registration</span><span class="feature_value">Automatically Register Multiple Domains</span></li>
+    <li><span class="feature_name">Brand Armor Protection</span><span class="feature_value">Protect your investment with 24/7 brand monitoring</span></li>
   </ul>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-primary" ng-click="switchExpertise('simple')">Use the Simple Version</button>
+  <a type="button" class="btn btn-primary" ui-sref="search.expertise({expertise:'simple'})">Use the Simple Version</a>
 </div>
