@@ -110,8 +110,6 @@ angular.module('litmusApp')
 	};
 
 	$scope.$on('$stateChangeSuccess', function() {
-		console.log(typeof($state.params.field));
-
 		if (typeof($state.params.field) === 'undefined') {
 			resetDomain();
 		}
