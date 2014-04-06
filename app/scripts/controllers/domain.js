@@ -10,7 +10,12 @@ angular.module('litmusApp')
   		}
 
       if ($scope.domain.name.length == 0) {
-        $scope.domain = false;
+        $scope.$parent.domain = false;
+        return;
+      }
+
+      if ($scope.expertise == 'advanced') {
+        $scope.$parent.domain = false;
         return;
       }
 
@@ -23,7 +28,7 @@ angular.module('litmusApp')
       Domain.checkDomain($scope.domain.name + '.org').success(function(response) {
         $scope.domain.orgAvailable = response.success ? !response.taken : false;
       });
-      
+
       Domain.checkDomain($scope.domain.name + '.net').success(function(response) {
         $scope.domain.netAvailable = response.success ? !response.taken : false;
       });
