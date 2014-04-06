@@ -9,6 +9,13 @@ angular.module('litmusApp')
   			return;
   		}
 
+      if ($scope.domain.name.length == 0) {
+        $scope.domain = false;
+        return;
+      }
+
+      $scope.domain.name = $scope.sanitizeDomain($scope.domain.name);
+
   		Domain.checkDomain($scope.domain).success(function(response) {
   			$scope.domain.available = response.success ? !response.taken : false;
   		});

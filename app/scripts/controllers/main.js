@@ -2,9 +2,7 @@
 
 angular.module('litmusApp')
   .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+    $scope.sanitizeDomain = function(_domain) {
+    	return _domain.replace(/\W/g, '').replace(/ /g,'').toLowerCase();
+    };
   });

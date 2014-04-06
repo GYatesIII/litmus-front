@@ -67,4 +67,14 @@ angular
     			$(window).scrollTop($curtain.height());    			
     		}
     	});
+
+    	$(window).resize(function() {
+		    if($(window).scrollTop() >= $curtain.height()) {
+		        $container.addClass('revealed');
+		        $container.css('top', $curtain.height());
+		    } else {
+		        $container.removeClass('revealed');
+		        $container.css('top', 0);
+		    }    		
+    	});
 	});
