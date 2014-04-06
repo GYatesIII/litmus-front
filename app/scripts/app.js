@@ -20,13 +20,13 @@ angular
 			// 	bodyClass: 'login'
 			// }).
 			state('search', {
-				url: '',
+				url: '/',
 				templateUrl: 'views/search.html',
 				controller: 'SearchCtrl',
 				bodyClass: 'search'
 			}).
 			state('search.expertise', {
-				url: '/:expertise',
+				url: ':expertise',
 				templateUrl: 'views/search.html',
 				controller: 'SearchCtrl',
 				bodyClass: 'search expertise'
@@ -45,4 +45,26 @@ angular
 	.run(function ($rootScope, $state, $stateParams) {
 	  $rootScope.$state = $state;
 	  $rootScope.$stateParams = $stateParams;
+
+	  	var $container = $('.container-wrap');
+	  	var $curtain = $('.landing-curtain');
+
+	  	var curtainBottom = Math.max($container.height(), $(window).height());
+    	$curtain.css('margin-bottom', curtainBottom);
+
+    	$(window).scroll(function() {
+		    if($(window).scrollTop() >= $curtain.height()) {
+		        $container.addClass('revealed');
+		        $container.css('top', $curtain.height());
+		    } else {
+		        $container.removeClass('revealed');
+		        $container.css('top', 0);
+		    }
+    	});
+
+    	$rootScope.$on('$stateChangeSuccess', function() {
+    		if (!$state.is('search')) {
+    			$(window).scrollTop($curtain.height());    			
+    		}
+    	});
 	});

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('litmusApp')
-.controller('SearchCtrl', function ($scope, $state, $rootScope, $window) {
+.controller('SearchCtrl', function ($scope, $rootScope, $state, $window, $modal) {
 	$scope.platforms = {
 		twitter: {
 			name: 'Twitter',
@@ -27,7 +27,7 @@ angular.module('litmusApp')
 			name: 'Dribbble',
 			available: null
 		},
-		linkedin: {
+		/*linkedin: {
 			name: 'LinkedIn',
 			available: null
 		},
@@ -38,7 +38,7 @@ angular.module('litmusApp')
 		etsy: {
 			name: 'Etsy',
 			available: null
-		},
+		},*/
 		angellist: {
 			name: 'AngelList',
 			available: null
@@ -55,6 +55,18 @@ angular.module('litmusApp')
 		if (typeof ($state.params.expertise) !== 'undefined') {
 			$scope.expertise = $state.params.expertise;
 		}
+
+		var expertiseModal = null;
+		if ($scope.expertise === 'advanced' && expertiseModal === null) {
+			expertiseModal = $modal.open({
+				templateUrl: '/views/advanced-modal.tpl.html'
+			});
+		} else {
+			if (typeof (expertiseModal) !== 'undefined' && expertiseModal !== null) {
+				expertiseModal.close();
+				expertiseModal = null;
+			}
+		}
 	}
 
 	function updateDomain() {
@@ -67,6 +79,10 @@ angular.module('litmusApp')
 			$scope.domainSearch = $scope.domain.name;
 		}
 	}
+
+	$rootScope.$on('domain:updated', function(e, _domain) {
+		$state.go('search.expertise.domain', {expertise: 'simple', domain: _domain});
+	});
 
 	$scope.expertiseLevel = function(_expertise) {
 		if ($state.includes('**.domain')) {
@@ -101,10 +117,6 @@ angular.module('litmusApp')
 
 		updateDomain();
 		updateExpertise();
-	});
-
-	$rootScope.$on('domain:updated', function() {
-
 	});
 
 	function resetDomain() {

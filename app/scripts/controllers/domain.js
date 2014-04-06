@@ -49,17 +49,17 @@ angular.module('litmusApp')
   			$scope.platforms.dribbble.available = response.success ? !response.taken : false;
   		});
 
-  		Domain.checkService($scope.domain, 'linkedin').success(function(response) {
-  			$scope.platforms.linkedin.available = response.success ? !response.taken : false;
-  		});
+  		// Domain.checkService($scope.domain, 'linkedin').success(function(response) {
+  		// 	$scope.platforms.linkedin.available = response.success ? !response.taken : false;
+  		// });
 
-  		Domain.checkService($scope.domain, 'etsy').success(function(response) {
-  			$scope.platforms.etsy.available = response.success ? !response.taken : false;
-  		});
+  		// Domain.checkService($scope.domain, 'etsy').success(function(response) {
+  		// 	$scope.platforms.etsy.available = response.success ? !response.taken : false;
+  		// });
 
-  		Domain.checkService($scope.domain, 'ebay').success(function(response) {
-  			$scope.platforms.ebay.available = response.success ? !response.taken : false;
-  		});
+  		// Domain.checkService($scope.domain, 'ebay').success(function(response) {
+  		// 	$scope.platforms.ebay.available = response.success ? !response.taken : false;
+  		// });
 
   		Domain.checkService($scope.domain, 'angellist').success(function(response) {
   			$scope.platforms.angellist.available = response.success ? !response.taken : false;

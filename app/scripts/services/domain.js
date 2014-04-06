@@ -6,6 +6,9 @@ angular.module('litmusApp')
 		checkDomain : function(domain) {
 			return $http.get(CONFIG.apiUrl + '/owned/webpage/' + domain.name + '.com');
 		},
+		generateRandom : function() {
+			return $http.get(CONFIG.apiUrl + '/brand/creator');
+		},
 		checkService: function(domain, service) {
 			return $http.get(CONFIG.apiUrl + '/owned/' + service + '/' + domain.name);
 		},

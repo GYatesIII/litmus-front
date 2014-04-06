@@ -25,24 +25,44 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="container" ng-controller="MainCtrl">
-      <div class="header row">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="/">New Brand</a></li>
-          <!--li><a ng-href="#">About</a></li>
-          <li><a ng-href="#">Contact</a></li-->
-        </ul>
-        <h3 class="text-muted" id="logo">Brand Forge</h3>
-        <h2><small>Go Brand Yourself</small></h2>
-      </div>
-      <!-- <div class="container" ng-include="'views/main.html'" ng-controller="MainCtrl"></div> -->
-      <div ui-view></div>
-      <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from Brand Forge</p>
+    <div class="landing-curtain" ng-controller="LandingCtrl">
+      <div class="landing-box-wrap">
+        <div class="landing-cell">
+          <div class="landing-box">
+            <img src="/images/full-logo.png" alt="Brand Forge">
+            <h2>Quickly test new brand names for availability across domains and social media platforms</h2>
+            <form ng-submit="searchSubmit()">
+            <div class="input-group">
+              <input type="text" class="form-control" ng-model="domainSearch" placeholder="Enter your brand or leave it blank to generate a random brand">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="button" ng-click="searchSubmit()">Search</button>
+              </span>
+            </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
 
+    <!-- Add your site or application content here -->
+    <div class="container-wrap">
+      <div class="container" ng-controller="MainCtrl">
+        <div class="header row">
+          <ul class="nav nav-pills pull-right">
+            <li class="active"><a href="/">New Brand</a></li>
+            <!--li><a ng-href="#">About</a></li>
+            <li><a ng-href="#">Contact</a></li-->
+          </ul>
+          <h3 class="text-muted" id="logo">Brand Forge</h3>
+          <h2><small>Go Brand Yourself</small></h2>
+        </div>
+        <!-- <div class="container" ng-include="'views/main.html'" ng-controller="MainCtrl"></div> -->
+        <div ui-view></div>
+        <div class="footer">
+          <p><span class="glyphicon glyphicon-heart"></span> from Brand Forge</p>
+        </div>
+      </div>
+    </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
@@ -82,6 +102,7 @@
         <script src="scripts/directives/reg-btn.js"></script>
         <script src="scripts/controllers/domain.js"></script>
         <script src="scripts/services/domain.js"></script>
+        <script src="scripts/controllers/landing.js"></script>
         <!-- endbuild -->
 </body>
 </html>
