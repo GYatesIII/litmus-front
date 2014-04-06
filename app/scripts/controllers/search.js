@@ -65,6 +65,7 @@ angular.module('litmusApp')
 		} else {
 			if (typeof (expertiseModal) !== 'undefined' && expertiseModal !== null) {
 				expertiseModal.close();
+				expertiseModal = null;
 			}
 		}
 	}
