@@ -85,6 +85,13 @@ angular.module('litmusApp')
 		$state.go('search.expertise.domain', {expertise: 'simple', domain: _domain});
 	});
 
+	$scope.openRegisterModal = function() {
+		$modal.open({
+			templateUrl: '/views/register-modal.tpl.html',
+			windowClass: 'register-modal'
+		});
+	};
+
 	$scope.expertiseLevel = function(_expertise) {
 		if ($state.includes('**.domain')) {
 			$state.go('search.expertise.domain', {expertise: _expertise, domain: $scope.domain.name});

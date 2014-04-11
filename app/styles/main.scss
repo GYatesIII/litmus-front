@@ -241,6 +241,15 @@ ul.pro_features {
     }
 }
 
+.register-modal .modal-dialog {
+    width: 900px;
+
+    img {
+        display: block;
+        margin: 0 auto;
+    }
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 900px) {
     .container {

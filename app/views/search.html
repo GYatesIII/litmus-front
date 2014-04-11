@@ -33,6 +33,16 @@
 
 <div ng-controller="DomainCtrl" ng-show="domain">
 	<div class="row spacer">
+		<div class="col-md-12">
+			<div class="btn-group btn-group-justified">
+				<div class="btn-group">
+					<button class="btn btn-warning" ng-click="openRegisterModal()">Register!</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row spacer">
 		<div class="col-md-3">
 			<h5>Domain Names</h5>
 			<button class="btn sm-spacer" ng-class="availableClass(domain.comAvailable)">{{domain.name}}.com</button>
